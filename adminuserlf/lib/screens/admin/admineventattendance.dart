@@ -116,12 +116,12 @@ class AttendeeItem extends StatelessWidget {
   final Color avatarColor;
 
   const AttendeeItem({
-    Key? key,
+    super.key,
     required this.name,
     required this.time,
     required this.imagePath,
     required this.avatarColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
