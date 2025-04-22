@@ -71,7 +71,7 @@ class EventAttendanceScreen extends StatelessWidget {
           color: Colors.grey[900],
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-            color: isclicked ? const Color(0xFF1ED195) : Colors.grey,
+            color: isclicked ? Usingcolors.btnbgcolor : Colors.grey,
             width: 2,
           ),
         ),
@@ -180,7 +180,7 @@ class AttendeeItem extends StatelessWidget {
                 Text(
                   time,
                   style: const TextStyle(
-                    color: Color(0xFF1ED195),
+                    color: Usingcolors.btnbgcolor,
                     fontSize: 14,
                   ),
                 ),

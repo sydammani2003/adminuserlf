@@ -93,7 +93,7 @@ class CreateEventScreen extends StatelessWidget {
                 children: [
                   Icon(
                     icon,
-                    color: Color(0xFF1ED195),
+                    color: Usingcolors.iconscolor,
                     size: 18,
                   ),
                   SizedBox(width: 8),
