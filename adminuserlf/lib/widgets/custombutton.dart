@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 class Custombutton extends StatelessWidget {
   final String txt;
   final VoidCallback? call;
-  const Custombutton({super.key, required this.txt, this.call});
+  final VoidCallback? calllong;
+  const Custombutton({super.key, required this.txt, this.call, this.calllong});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: call,
+      onLongPress: calllong,
       style: ElevatedButton.styleFrom(
         backgroundColor: Usingcolors.iconscolor,
         foregroundColor: Colors.black,

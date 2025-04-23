@@ -2,6 +2,7 @@
 
 import 'package:adminuserlf/consts/colors.dart';
 import 'package:adminuserlf/screens/admin/adminhome.dart';
+import 'package:adminuserlf/screens/user/userevents.dart';
 import 'package:adminuserlf/widgets/custombutton.dart';
 import 'package:adminuserlf/widgets/customtxtfield.dart';
 import 'package:adminuserlf/widgets/mntxt.dart';
@@ -113,6 +114,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   call: () {
                     Navigator.push(context, MaterialPageRoute(builder: (_) {
                       return HomeScreen();
+                    }));
+                  },
+                  calllong: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) {
+                      return EventsScreen();
                     }));
                   },
                 ),
