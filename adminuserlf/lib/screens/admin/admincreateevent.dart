@@ -11,6 +11,9 @@ class CreateEventScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaquery = MediaQuery.of(context);
+    final screenwidth = mediaquery.size.width;
+    
     return Scaffold(
       backgroundColor: Usingcolors.bgcolor,
       body: SafeArea(
@@ -18,56 +21,208 @@ class CreateEventScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 16),
-                // Header
-                Mntxt(txt: 'Create an Event'),
-                const SizedBox(height: 24),
-
-                // Improved Image upload container
-                Center(
-                  child: InkWell(
-                    onTap: () {
-                      // Implement image picker here
-                    },
-                    child: toaddimage(),
-                  ),
-                ),
-
-                const SizedBox(height: 24),
-                // Event Title
-                Txtiph(txt: 'Event Title'),
-                const SizedBox(height: 8),
-                // Title TextField
-                Customtxtfield(
-                  txt: 'Event Title',
-                ),
-                const SizedBox(height: 16),
-                // Description
-                Txtiph(txt: 'Description'),
-                const SizedBox(height: 8),
-                // Description TextField
-                Customtxtfield(
-                  txt: 'Enter the description',
-                  lines: 5,
-                ),
-                const SizedBox(height: 16),
-                // Date and Time row
-                Row(
-                  children: [
-                    // Date
-                    toadddttime('Date', 'Select a date', Icons.calendar_today),
-                    const SizedBox(width: 16),
-                    // Time
-                    toadddttime('Time', 'Select a time', Icons.access_time),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                // Create Event Button
-                Custombutton(txt: 'Create'),
+                if (screenwidth <= 600) mobileview(),
+                if (screenwidth > 600 && screenwidth <= 992) tabview(),
+                if (screenwidth > 992) webview()
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget mobileview() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const SizedBox(height: 16),
+        // Header
+        Mntxt(txt: 'Create an Event'),
+        const SizedBox(height: 24),
+
+        // Improved Image upload container
+        Center(
+          child: InkWell(
+            onTap: () {
+              // Implement image picker here
+            },
+            child: toaddimage(),
+          ),
+        ),
+
+        const SizedBox(height: 24),
+        // Event Title
+        Txtiph(txt: 'Event Title'),
+        const SizedBox(height: 8),
+        // Title TextField
+        Customtxtfield(
+          txt: 'Event Title',
+        ),
+        const SizedBox(height: 16),
+        // Description
+        Txtiph(txt: 'Description'),
+        const SizedBox(height: 8),
+        // Description TextField
+        Customtxtfield(
+          txt: 'Enter the description',
+          lines: 5,
+        ),
+        const SizedBox(height: 16),
+        // Date and Time row
+        Row(
+          children: [
+            // Date
+            toadddttime('Date', 'Select a date', Icons.calendar_today),
+            const SizedBox(width: 16),
+            // Time
+            toadddttime('Time', 'Select a time', Icons.access_time),
+          ],
+        ),
+        const SizedBox(height: 24),
+        // Create Event Button
+        Custombutton(txt: 'Create'),
+      ],
+    );
+  }
+
+  Widget tabview() {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 700),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 16),
+
+          // Header
+          Mntxt(txt: 'Create an Event'),
+          const SizedBox(height: 24),
+
+          // Image Upload
+          Center(
+            child: InkWell(
+              onTap: () {
+                // Implement image picker here
+              },
+              child: toaddimage(),
+            ),
+          ),
+          const SizedBox(height: 24),
+
+          // Event Title
+          Txtiph(txt: 'Event Title'),
+          const SizedBox(height: 8),
+          Customtxtfield(txt: 'Event Title'),
+          const SizedBox(height: 16),
+
+          // Description
+          Txtiph(txt: 'Description'),
+          const SizedBox(height: 8),
+          Customtxtfield(
+            txt: 'Enter the description',
+            lines: 5,
+          ),
+          const SizedBox(height: 16),
+
+          // Date and Time Side-by-Side
+          Row(
+            children: [
+              Expanded(
+                child:
+                    toadddttime('Date', 'Select a date', Icons.calendar_today),
+              ),
+              const SizedBox(width: 24),
+              Expanded(
+                child: toadddttime('Time', 'Select a time', Icons.access_time),
+              ),
+            ],
+          ),
+          const SizedBox(height: 32),
+
+          // Create Button
+          Custombutton(txt: 'Create'),
+        ],
+      ),
+    );
+  }
+
+  Widget webview() {
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 16),
+
+              // Header
+              Mntxt(txt: 'Create an Event'),
+              const SizedBox(height: 32),
+
+              // Image Upload Container
+              Center(
+                child: InkWell(
+                  onTap: () {
+                    // Implement image picker here
+                  },
+                  child: toaddimage(),
+                ),
+              ),
+
+              const SizedBox(height: 32),
+
+              // Event Title
+              Txtiph(txt: 'Event Title'),
+              const SizedBox(height: 8),
+              Customtxtfield(txt: 'Event Title'),
+              const SizedBox(height: 24),
+
+              // Description
+              Txtiph(txt: 'Description'),
+              const SizedBox(height: 8),
+              Customtxtfield(
+                txt: 'Enter the description',
+                lines: 5,
+              ),
+              const SizedBox(height: 24),
+
+              // Date & Time Row
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  bool isWide = constraints.maxWidth > 500;
+                  return isWide
+                      ? Row(
+                          children: [
+                            Expanded(
+                                child: toadddttime('Date', 'Select a date',
+                                    Icons.calendar_today)),
+                            const SizedBox(width: 16),
+                            Expanded(
+                                child: toadddttime('Time', 'Select a time',
+                                    Icons.access_time)),
+                          ],
+                        )
+                      : Column(
+                          children: [
+                            toadddttime(
+                                'Date', 'Select a date', Icons.calendar_today),
+                            const SizedBox(height: 16),
+                            toadddttime(
+                                'Time', 'Select a time', Icons.access_time),
+                          ],
+                        );
+                },
+              ),
+
+              const SizedBox(height: 32),
+
+              // Create Button
+              Custombutton(txt: 'Create'),
+              const SizedBox(height: 24),
+            ],
           ),
         ),
       ),

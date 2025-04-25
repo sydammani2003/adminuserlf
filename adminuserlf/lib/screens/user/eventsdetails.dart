@@ -3,6 +3,7 @@
 import 'package:adminuserlf/consts/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class EventDetailsScreen extends StatelessWidget {
   EventDetailsScreen({super.key});
@@ -129,9 +130,10 @@ class EventDetailsScreen extends StatelessWidget {
                         color: Usingcolors.mainhcolor,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Image.network(
-                        'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=SummerMusicFestival2024',
-                        fit: BoxFit.cover,
+                      child: QrImageView(
+                        data: 'https://stackoverflow.com/questions/62286575/how-to-solve-no-implementation-found-for-method-showtoast-in-flutter',
+                        version: QrVersions.auto,
+                        size: 200.0,
                       ),
                     ),
                   ],
