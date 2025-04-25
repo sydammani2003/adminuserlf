@@ -9,7 +9,7 @@ class EventAttendanceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final mediaquery = MediaQuery.of(context);
     final screenwidth = mediaquery.size.width;
-    
+
     return Scaffold(
       backgroundColor: Usingcolors.bgcolor,
       body: SafeArea(
@@ -200,46 +200,44 @@ class EventAttendanceScreen extends StatelessWidget {
   }
 
   Widget todisevent(String fw, String lw, String dt, bool isclicked) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.grey[900],
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: isclicked ? Usingcolors.btnbgcolor : Colors.grey,
-            width: 2,
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.grey[900],
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: isclicked ? Usingcolors.btnbgcolor : Colors.grey,
+          width: 2,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            fw,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
           ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              fw,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
+          Text(
+            lw,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
             ),
-            Text(
-              lw,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
+          ),
+          SizedBox(height: 4),
+          Text(
+            dt,
+            style: TextStyle(
+              color: Color(0xFF1ED195),
+              fontSize: 14,
             ),
-            SizedBox(height: 4),
-            Text(
-              dt,
-              style: TextStyle(
-                color: Color(0xFF1ED195),
-                fontSize: 14,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -300,28 +298,26 @@ class AttendeeItem extends StatelessWidget {
           ),
           const SizedBox(width: 16),
           // Name and time
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                name,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  time,
-                  style: const TextStyle(
-                    color: Usingcolors.btnbgcolor,
-                    fontSize: 14,
-                  ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                time,
+                style: const TextStyle(
+                  color: Usingcolors.btnbgcolor,
+                  fontSize: 14,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

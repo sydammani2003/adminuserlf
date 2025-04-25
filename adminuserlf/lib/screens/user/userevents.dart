@@ -8,35 +8,140 @@ class EventsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaquery = MediaQuery.of(context);
+    final screenwidth = mediaquery.size.width;
     return Scaffold(
       backgroundColor: Usingcolors.bgcolor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                if (screenwidth <= 600) mobileview(context),
+                if (screenwidth > 992) webview(context),
+                if (screenwidth > 600 && screenwidth <= 992) tabview(context)
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget mobileview(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Status bar simulation
+
+        Mntxt(txt: 'Upcoming Events'),
+        const SizedBox(height: 24),
+
+        // Event Cards
+        InkWell(
+          onTap: () => Navigator.push(
+              context, MaterialPageRoute(builder: (_) => EventDetailsScreen())),
+          child: toshoweventcard(
+            'Summer Music Festival 2024',
+            'June 15, 2024',
+            '7:00 PM',
+          ),
+        ),
+        const SizedBox(height: 12),
+        toshoweventcard(
+          'Tech Conference 2024',
+          'July 2, 2024',
+          '9:00 AM',
+        ),
+        const SizedBox(height: 12),
+        toshoweventcard(
+          'Food & Wine Expo',
+          'July 10, 2024',
+          '11:00 AM',
+        ),
+      ],
+    );
+  }
+
+  Widget tabview(BuildContext context) {
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 800),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Status bar simulation
-
+              // Heading
               Mntxt(txt: 'Upcoming Events'),
-              const SizedBox(height: 24),
+              const SizedBox(height: 32),
 
-              // Event Cards
+              // Event Cards - Using InkWell for interactivity
               InkWell(
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_)=>EventDetailsScreen())),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => EventDetailsScreen()),
+                ),
                 child: toshoweventcard(
                   'Summer Music Festival 2024',
                   'June 15, 2024',
                   '7:00 PM',
                 ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 16),
+
               toshoweventcard(
                 'Tech Conference 2024',
                 'July 2, 2024',
                 '9:00 AM',
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 16),
+
+              toshoweventcard(
+                'Food & Wine Expo',
+                'July 10, 2024',
+                '11:00 AM',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget webview(BuildContext context) {
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 800),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Heading
+              Mntxt(txt: 'Upcoming Events'),
+              const SizedBox(height: 32),
+
+              // Event Cards
+              InkWell(
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => EventDetailsScreen())),
+                child: toshoweventcard(
+                  'Summer Music Festival 2024',
+                  'June 15, 2024',
+                  '7:00 PM',
+                ),
+              ),
+              const SizedBox(height: 16),
+
+              toshoweventcard(
+                'Tech Conference 2024',
+                'July 2, 2024',
+                '9:00 AM',
+              ),
+              const SizedBox(height: 16),
+
               toshoweventcard(
                 'Food & Wine Expo',
                 'July 10, 2024',

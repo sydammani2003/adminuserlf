@@ -13,7 +13,7 @@ class CreateEventScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final mediaquery = MediaQuery.of(context);
     final screenwidth = mediaquery.size.width;
-    
+
     return Scaffold(
       backgroundColor: Usingcolors.bgcolor,
       body: SafeArea(
@@ -230,41 +230,39 @@ class CreateEventScreen extends StatelessWidget {
   }
 
   Widget toadddttime(String iph, String hinttxt, IconData icon) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Txtiph(txt: iph),
-          const SizedBox(height: 8),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.grey[900],
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Icon(
-                    icon,
-                    color: Usingcolors.iconscolor,
-                    size: 18,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Txtiph(txt: iph),
+        const SizedBox(height: 8),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.grey[900],
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Icon(
+                  icon,
+                  color: Usingcolors.iconscolor,
+                  size: 18,
+                ),
+                SizedBox(width: 8),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Text(
+                    hinttxt,
+                    style: TextStyle(color: Colors.grey),
                   ),
-                  SizedBox(width: 8),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
-                    child: Text(
-                      hinttxt,
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
