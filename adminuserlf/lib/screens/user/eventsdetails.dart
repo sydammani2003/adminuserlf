@@ -146,7 +146,7 @@ class EventDetailsScreen extends StatelessWidget {
                   ),
                   child: QrImageView(
                     data:
-                        'https://stackoverflow.com/questions/62286575/how-to-solve-no-implementation-found-for-method-showtoast-in-flutter',
+                        "{\"name\": \"New York City\", \"latitude\": 40.7128, \"longitude\": -74.006}",
                     version: QrVersions.auto,
                     size: 200.0,
                   ),
@@ -269,7 +269,7 @@ class EventDetailsScreen extends StatelessWidget {
                         ),
                         child: QrImageView(
                           data:
-                              'https://stackoverflow.com/questions/62286575/how-to-solve-no-implementation-found-for-method-showtoast-in-flutter',
+                              "{\"name\": \"New York City\", \"latitude\": 40.7128, \"longitude\": -74.006}",
                           version: QrVersions.auto,
                           size: 220.0,
                         ),
@@ -395,7 +395,7 @@ class EventDetailsScreen extends StatelessWidget {
                         ),
                         child: QrImageView(
                           data:
-                              'https://stackoverflow.com/questions/62286575/how-to-solve-no-implementation-found-for-method-showtoast-in-flutter',
+                              "{\"name\": \"New York City\", \"latitude\": 40.7128, \"longitude\": -74.006}",
                           version: QrVersions.auto,
                           size: 200.0,
                         ),

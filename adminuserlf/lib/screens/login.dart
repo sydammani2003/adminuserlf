@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, unused_local_variable, deprecated_member_use
+// ignore_for_file: library_private_types_in_public_api, deprecated_member_use
 
 import 'package:adminuserlf/consts/colors.dart';
 import 'package:adminuserlf/screens/admin/adminhome.dart';
@@ -18,12 +18,13 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
+  TextEditingController un = TextEditingController();
+  TextEditingController pw = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final mediaquery = MediaQuery.of(context);
     final screenwidth = mediaquery.size.width;
-    final screenheight = mediaquery.size.height;
     return Scaffold(
       backgroundColor: Usingcolors.bgcolor,
       body: SafeArea(
@@ -35,7 +36,6 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 80),
-                // App Icon
                 Center(
                   child: Container(
                     width: 50,
@@ -52,12 +52,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                // Welcome Text
                 const Center(
                   child: Mntxt(txt: 'Welcome Back'),
                 ),
                 const SizedBox(height: 8),
-                // Sign in Text
                 const Center(
                   child: Text(
                     'Sign in to continue',
@@ -68,13 +66,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                // Username Label
-
                 if (screenwidth <= 600) mobileview(),
                 if (screenwidth > 600 && screenwidth <= 992) tabletview(),
                 if (screenwidth > 992) webview(),
-
-                // Forgot Password
                 Center(
                   child: TextButton(
                     onPressed: () {},
@@ -100,15 +94,12 @@ class _LoginScreenState extends State<LoginScreen> {
       children: [
         Txtiph(txt: 'Username'),
         const SizedBox(height: 8),
-        // Username TextField
         Customtxtfield(
           txt: 'Enter Username',
         ),
         const SizedBox(height: 20),
-        // Password Label
         Txtiph(txt: 'Password'),
         const SizedBox(height: 8),
-        // Password TextField
         Container(
           decoration: BoxDecoration(
             color: Colors.grey[900],
@@ -140,7 +131,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         const SizedBox(height: 24),
-        // Login Button
         Custombutton(
           txt: 'Login',
           call: () {
@@ -231,7 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Container(
-          width: 400, // max width for web
+          width: 400,
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
             color: Colors.grey[850],
@@ -247,19 +237,12 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Username Label
               Txtiph(txt: 'Username'),
               const SizedBox(height: 8),
-
-              // Username Field
               Customtxtfield(txt: 'Enter Username'),
               const SizedBox(height: 20),
-
-              // Password Label
               Txtiph(txt: 'Password'),
               const SizedBox(height: 8),
-
-              // Password Field
               Container(
                 decoration: BoxDecoration(
                   color: Colors.grey[900],
@@ -291,8 +274,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 24),
-
-              // Login Button
               Custombutton(
                 txt: 'Login',
                 call: () {
