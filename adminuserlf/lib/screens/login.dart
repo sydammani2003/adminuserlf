@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 80),
+                const SizedBox(height: 180),
                 Center(
                   child: Container(
                     width: 50,
