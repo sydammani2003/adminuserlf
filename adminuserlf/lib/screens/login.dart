@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
     } else if (userusername == username && userpassword == password) {
       return 'user';
     } else {
-      return 'Invalid Login Credentials';
+      return 'Invalid  Credentials';
     }
   }
 
