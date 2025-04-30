@@ -6,7 +6,9 @@ class Customtxtfield extends StatelessWidget {
   final double? width;
   final int? lines;
   final String? txt;
-  const Customtxtfield({super.key, this.height, this.width, this.txt,this.lines});
+  final TextEditingController? crtl;
+  const Customtxtfield(
+      {super.key, this.height, this.width, this.txt, this.lines,this.crtl});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +20,13 @@ class Customtxtfield extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: TextField(
+        controller: crtl,
         style: TextStyle(color: Colors.white),
         maxLines: lines,
         decoration: InputDecoration(
           hintText: txt,
           hintStyle: TextStyle(color: Usingcolors.hinttxt),
           border: InputBorder.none,
-          
           contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         ),
       ),

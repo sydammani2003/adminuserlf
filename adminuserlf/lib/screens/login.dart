@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, deprecated_member_use
+// ignore_for_file: library_private_types_in_public_api, deprecated_member_use, use_build_context_synchronously
 
 import 'package:adminuserlf/consts/colors.dart';
 import 'package:adminuserlf/screens/admin/adminhome.dart';
@@ -8,6 +8,7 @@ import 'package:adminuserlf/widgets/customtxtfield.dart';
 import 'package:adminuserlf/widgets/mntxt.dart';
 import 'package:adminuserlf/widgets/txtiph.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -20,6 +21,38 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
   TextEditingController un = TextEditingController();
   TextEditingController pw = TextEditingController();
+
+  Future<void> saveLoginCredentials() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('adminusername', 'admin');
+    await prefs.setString('adminpassword', 'adminpass');
+    await prefs.setString('userusername', 'user');
+    await prefs.setString('userpassword', 'userpass');
+  }
+
+  Future<String> getLoginCredentials(String username, String password) async {
+    final prefs = await SharedPreferences.getInstance();
+    final adminusername = prefs.getString('adminusername');
+    final adminpassword = prefs.getString('adminpassword');
+    final userusername = prefs.getString('userusername');
+    final userpassword = prefs.getString('userpassword');
+
+    if (adminusername == username && adminpassword == password) {
+      return 'admin';
+    } else if (userusername == username && userpassword == password) {
+      return 'user';
+    } else {
+      return 'Invalid Login Credentials';
+    }
+  }
+
+  String s = '';
+
+  @override
+  void initState() {
+    super.initState();
+    saveLoginCredentials();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Txtiph(txt: 'Username'),
         const SizedBox(height: 8),
         Customtxtfield(
+          crtl: un,
           txt: 'Enter Username',
         ),
         const SizedBox(height: 20),
@@ -106,6 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
             borderRadius: BorderRadius.circular(8),
           ),
           child: TextField(
+            controller: pw,
             obscureText: _obscureText,
             style: const TextStyle(color: Usingcolors.mainhcolor),
             decoration: InputDecoration(
@@ -133,15 +168,24 @@ class _LoginScreenState extends State<LoginScreen> {
         const SizedBox(height: 24),
         Custombutton(
           txt: 'Login',
-          call: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) {
-              return HomeScreen();
-            }));
-          },
-          calllong: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) {
-              return EventsScreen();
-            }));
+          call: () async {
+           
+            String a = await getLoginCredentials(un.text, pw.text);
+
+            setState(() {
+              s = a;
+            });
+
+            if (s == 'admin') {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => HomeScreen()));
+            } else if (s == 'user') {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => EventsScreen()));
+            } else {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(s)));
+            }
           },
         ),
         const SizedBox(height: 16),
@@ -162,7 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Txtiph(txt: 'Username'),
               const SizedBox(height: 8),
-              Customtxtfield(txt: 'Enter Username'),
+              Customtxtfield(txt: 'Enter Username',crtl: un,),
               const SizedBox(height: 20),
               Txtiph(txt: 'Password'),
               const SizedBox(height: 8),
@@ -172,6 +216,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: TextField(
+                  controller: pw,
                   obscureText: _obscureText,
                   style: const TextStyle(color: Usingcolors.mainhcolor),
                   decoration: InputDecoration(
@@ -199,13 +244,22 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 24),
               Custombutton(
                 txt: 'Login',
-                call: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => HomeScreen()));
-                },
-                calllong: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => EventsScreen()));
+                call: () async {
+                  String a = await getLoginCredentials(un.text, pw.text);
+                  setState(() {
+                    s = a;
+                  });
+
+                  if (s == 'admin') {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => HomeScreen()));
+                  } else if (s == 'user') {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => EventsScreen()));
+                  } else {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text(s)));
+                  }
                 },
               ),
               const SizedBox(height: 16),
@@ -239,7 +293,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Txtiph(txt: 'Username'),
               const SizedBox(height: 8),
-              Customtxtfield(txt: 'Enter Username'),
+              Customtxtfield(txt: 'Enter Username',crtl: un,),
               const SizedBox(height: 20),
               Txtiph(txt: 'Password'),
               const SizedBox(height: 8),
@@ -249,6 +303,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: TextField(
+                  controller: pw,
                   obscureText: _obscureText,
                   style: const TextStyle(color: Usingcolors.mainhcolor),
                   decoration: InputDecoration(
@@ -276,15 +331,22 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 24),
               Custombutton(
                 txt: 'Login',
-                call: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) {
-                    return HomeScreen();
-                  }));
-                },
-                calllong: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) {
-                    return EventsScreen();
-                  }));
+                call: () async {
+                  String a = await getLoginCredentials(un.text, pw.text);
+                  setState(() {
+                    s = a;
+                  });
+
+                  if (s == 'admin') {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => HomeScreen()));
+                  } else if (s == 'user') {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => EventsScreen()));
+                  } else {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text(s)));
+                  }
                 },
               ),
               const SizedBox(height: 16),
