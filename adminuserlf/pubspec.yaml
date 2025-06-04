@@ -39,7 +39,8 @@ dependencies:
   qr_flutter: ^4.1.0
   shared_preferences: ^2.5.3
   responsive_builder: ^0.7.1
-  
+  flutter_native_pdf_viewer: ^0.1.15
+  flutter_markdown: ^0.6.18
 
 dev_dependencies:
   flutter_test:

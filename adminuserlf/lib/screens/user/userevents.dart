@@ -1,5 +1,7 @@
 import 'package:adminuserlf/consts/colors.dart';
+import 'package:adminuserlf/screens/user/articles.dart';
 import 'package:adminuserlf/screens/user/eventsdetails.dart';
+import 'package:adminuserlf/screens/user/pdfs.dart';
 import 'package:adminuserlf/widgets/mntxt.dart';
 import 'package:flutter/material.dart';
 
@@ -59,6 +61,28 @@ class EventsScreen extends StatelessWidget {
           'Food & Wine Expo',
           'July 10, 2024',
           '11:00 AM',
+        ),
+         const SizedBox(height: 12),
+        InkWell(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (_)=>Pdfs()));
+          },
+          child: toshoweventcard(
+            'PDFs',
+            'List of Pdfs',
+            '',
+          ),
+        ),
+         const SizedBox(height: 12),
+        InkWell(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (_)=>Articles()));
+          },
+          child: toshoweventcard(
+            'Articles',
+            'List of Articles',
+            '',
+          ),
         ),
       ],
     );
@@ -181,14 +205,9 @@ class EventsScreen extends StatelessWidget {
                   const SizedBox(height: 8),
                   Row(
                     children: [
-                      const Icon(
-                        Icons.access_time,
-                        color: Usingcolors.btnbgcolor,
-                        size: 16,
-                      ),
-                      const SizedBox(width: 4),
+                      
                       Text(
-                        '$date • $time',
+                        '$date  $time',
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.grey[400],
