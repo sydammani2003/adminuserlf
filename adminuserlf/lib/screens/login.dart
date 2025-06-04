@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
     } else if (userusername == username && userpassword == password) {
       return 'user';
     } else {
-      return 'Invalid  Credentials';
+      return 'Invalid Login Credentials';
     }
   }
 
@@ -169,7 +169,6 @@ class _LoginScreenState extends State<LoginScreen> {
         Custombutton(
           txt: 'Login',
           call: () async {
-           
             String a = await getLoginCredentials(un.text, pw.text);
 
             setState(() {
@@ -206,7 +205,10 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Txtiph(txt: 'Username'),
               const SizedBox(height: 8),
-              Customtxtfield(txt: 'Enter Username',crtl: un,),
+              Customtxtfield(
+                txt: 'Enter Username',
+                crtl: un,
+              ),
               const SizedBox(height: 20),
               Txtiph(txt: 'Password'),
               const SizedBox(height: 8),
@@ -293,7 +295,10 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Txtiph(txt: 'Username'),
               const SizedBox(height: 8),
-              Customtxtfield(txt: 'Enter Username',crtl: un,),
+              Customtxtfield(
+                txt: 'Enter Username',
+                crtl: un,
+              ),
               const SizedBox(height: 20),
               Txtiph(txt: 'Password'),
               const SizedBox(height: 8),
